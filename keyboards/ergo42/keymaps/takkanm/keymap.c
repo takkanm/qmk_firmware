@@ -25,10 +25,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `------------------------------------------------'   `------------------------------------------------'
    */
   [BASE] = LAYOUT( \
-    KC_ESC,   KC_TAB,          KC_Q,       KC_W,    KC_E,    KC_R,   KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,           KC_P,              KC_BSLS,        KC_MINS, \
-    KC_DELT,  CTL_T(KC_BSPC),  KC_A,       KC_S,    KC_D,    KC_F,   KC_G,       KC_H,    KC_J,    KC_K,    KC_L,           LT(SYMB, KC_SCLN), GUI_T(KC_QUOT), KC_ENT, \
-    MO(SYMB), KC_LSFT,         KC_Z,       KC_X,    KC_C,    KC_V,   KC_B,       KC_N,    KC_M,    KC_COMM, KC_DOT,         CTL_T(KC_SLSH),    KC_RSFT,        MO(SYMB), \
-    MO(META), KC_GRV,          KC_QUOT,    KC_BSPC, KC_LALT, KC_SPC, KC_LGUI,    KC_RGUI, KC_ENT,  KC_SPC,  CTL_T(KC_ESC),  KC_LBRC,           KC_RBRC,        MO(META) \
+    KC_TAB,   KC_Q,    KC_W,   KC_E,    KC_R,    KC_T,   S(KC_4),   S(KC_5),  KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSLS, \
+    KC_LCTL,  KC_A,    KC_S,   KC_D,    KC_F,    KC_G,   S(KC_9),   S(KC_0),  KC_H,   KC_J,   KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+    KC_LSFT,  KC_Z,    KC_X,   KC_C,    KC_V,    KC_B,   MO(META),  MO(SYMB), KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT , \
+    MO(SYMB), KC_GRV,  GAME,   KC_LALT, KC_SPC,  KC_ESC, KC_LGUI,   KC_RGUI,  KC_ENT, KC_SPC, SYMB,    KC_LBRC, KC_RBRC, MO(META)\
   ),
 
   /* META
@@ -43,10 +43,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `------------------------------------------------'   `------------------------------------------------'
    */
   [META] = LAYOUT( \
-    RESET,   KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_BSPC, \
-    _______, KC_F1,   KC_F2,   KC_MHEN, KC_HENK, XXXXXXX, XXXXXXX,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, _______, \
-    _______, KC_LSFT, KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,      KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______,\
-    _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______ \
+      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, S(KC_4),    S(KC_5), KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   S(KC_9),    S(KC_0), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCBR, KC_PIPE, \
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_LPRN,    KC_RPRN, KC_F12,  KC_F6,   _______, KC_HOME, KC_END,  _______, \
+      _______, _______, _______, _______, _______, _______, _______,    _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY, _______ \
   ),
 
   /* SYMB
@@ -61,11 +61,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `------------------------------------------------'   `------------------------------------------------'
    */
   [SYMB] = LAYOUT( \
-    _______, S(KC_EQL), S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),    S(KC_6),    S(KC_7), S(KC_8), S(KC_9), S(KC_0), S(KC_MINS), _______, \
-    _______, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, S(KC_9),    S(KC_0),    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______, \
-    _______, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, S(KC_LBRC), S(KC_RBRC), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,    _______, \
-    _______, _______,   _______, _______, _______, _______, _______,    _______,    _______, _______, _______, _______, _______,    _______ \
-  )
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    S(KC_4),    S(KC_5), KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
+    _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   S(KC_9),    S(KC_0), KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
+    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______,    _______, KC_F12,  _______, _______, KC_PGDN, KC_PGUP, _______, \
+    _______, _______, _______, _______, _______, _______, _______,    _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY, _______ \
+  ),
 
+  [GAME] =  LAYOUT( \
+      _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
+      _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, _______, _______, AG_SWAP, _______,  _______, _______,  _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD \
+  )
 };
 
