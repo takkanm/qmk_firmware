@@ -32,7 +32,8 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   BACKLIT,
-  RGBRST
+  RGBRST,
+  FIXED_TIME
 };
 
 enum macro_keycodes {
@@ -57,6 +58,7 @@ enum macro_keycodes {
 #define KC_CTLESC CTL_T(KC_ESC)
 #define KC_GUIEI GUI_T(KC_LANG2)
 #define KC_ALTKN ALT_T(KC_LANG1)
+#define KC_FIXED_TIME FIXED_TIME
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
@@ -77,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       CTLTB,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   F11,   F12,   F13,   F14,   F15,                    F16,   F17,   F18,   F19,   F20, XXXXX,\
+       LSFT,   F11,   F12,   F13,   F14,  FIXED_TIME,                    F16,   F17,   F18,   F19,   F20, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   GUIEI, LOWER,   SPC,      ENT, RAISE, LGUI \
                               //`--------------------'  `--------------------'
@@ -241,6 +243,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
+    case FIXED_TIME:
+        if (record->event.pressed) {
+          SEND_STRING("10\t19\t\t\t\t\t\t\t\t\t\t\t");
+          //register_code(KC_ENTER);
+        }
+       break;
   }
   return true;
 }
