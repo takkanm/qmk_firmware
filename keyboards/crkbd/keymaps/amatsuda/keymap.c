@@ -24,7 +24,7 @@ enum custom_keycodes {
   ADJUST,
   BACKLIT,
   RGBRST,
-  DUMMY_COLN,
+  DUMMY_COLN
 };
 
 enum macro_keycodes {
@@ -157,6 +157,9 @@ void iota_gfx_task_user(void) {
 #endif//SSD1306OLED
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static bool lshift = false;
+  static bool rshift = false;
+    
   if (record->event.pressed) {
 #ifdef SSD1306OLED
     set_keylog(keycode, record);
@@ -167,11 +170,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case DUMMY_COLN:
       if (record->event.pressed) {
-          if (get_mods() == MOD_MASK_SHIFT) {
-              SEND_STRING(";");
-          } else {
-              SEND_STRING(";");
-          }
+        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
+        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
+        if (lshift || rshift) {
+          if (lshift) unregister_code(KC_LSFT);
+          if (rshift) unregister_code(KC_RSFT);
+          register_code(KC_SCLN);
+          unregister_code(KC_SCLN);
+          if (lshift) register_code(KC_LSFT);
+          if (rshift) register_code(KC_RSFT);
+        } else {
+          register_code(KC_COLN);
+          unregister_code(KC_COLN);
+        }
       }
       return false;
     case QWERTY:
